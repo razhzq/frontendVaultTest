@@ -48,6 +48,11 @@ function MainVault() {
        console.log('myBalance: ', myBalance)
     }
 
+    const mintMock = async() => {
+        const amount = ethers.parseUnits("10000", 18);
+        await mockUsdContract.methods.mint(amount).send({from: user});
+    }
+
     useEffect(() => {
         if(mockUsdContract) {
             checkVaultBalance();
@@ -92,6 +97,8 @@ function MainVault() {
                               <Button onClick={() => withdrawVault()}>Confirm</Button>
                            </Modal.Footer>
                         </Modal>
+
+                    <Button onClick={() => mintMock()}>Mint MockUSD</Button>
                 </div>
             </div>
         </div>
